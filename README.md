@@ -1,0 +1,3 @@
+[![codecov](https://codecov.io/gh/jbigman/location-server/graph/badge.svg?token=iMNtcsI782)](https://codecov.io/gh/jbigman/location-server) [![Build & Deploy](https://github.com/jbigman/location-server/actions/workflows/build-deploy.yml/badge.svg)](https://github.com/jbigman/location-server/actions/workflows/build-deploy.yml)  [![Depfu](https://badges.depfu.com/badges/65666568db32b514db4d42607054ff04/overview.svg)](https://depfu.com/repos/github/jbigman/location-server?project_id=40030)
+
+- 🔥 Location API : **Nodejs/NestJs and MongoDB Database** 

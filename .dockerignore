@@ -1,0 +1,15 @@
+# flyctl launch added from .gitignore
+/node_modules
+
+# Ignore ide files
+*.iml
+/.idea
+/.vscode/
+
+ # ignore generated files
+/dist
+/coverage
+yarn.lock
+
+# ignore env files
+/env

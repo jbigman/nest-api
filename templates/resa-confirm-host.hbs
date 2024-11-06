@@ -1,0 +1,37 @@
+<h1>{{lodgeName}}</h1>
+
+<p>Nouvelle réservation du {{from}} au {{to}}</p>
+
+<p><strong>Total : {{total}}€</strong></p>
+<p>Nuitées : {{price}}€</p>
+<p>Taxe de séjour: {{taxe}}€</p>
+<p>Options : {{optionsPrice}}€</p>
+{{#if menage}} 
+<p>Option ménage : {{menage}}</p>
+{{/if}} 
+{{#if nbLitDouble}} 
+<p>Nombre de draps en 160*200 : {{nbLitDouble}}</p>
+{{/if}} 
+{{#if nbLitSimple}} 
+<p>Nombre de draps en 90*190 : {{nbLitSimple}}</p>
+{{/if}} 
+{{#if nbLinge}} 
+<p>Nombre de linges : {{nbLinge}}</p>
+{{/if}} 
+
+<p><strong>Voyageurs</strong></p>
+<p>Nombre d'adultes : {{adults}}</p>
+<p>Nombre d'enfants : {{kids}}</p>
+<p>Nombre de bébés : {{babies}}</p>
+<p>Nombre d'animaux : {{animals}}</p>
+
+{{#if cond1}} 
+    <p><strong>Message des voyageurs</strong></p>
+    <p>"{{message}}"</p>
+{{/if}}
+
+<p><strong>Coordonnées</strong></p>
+<p></p>{{firstName}} {{lastName}}</p>
+<p>{{email}}</p>
+<p>{{phone}}</p>
+<p>{{address}}</p>

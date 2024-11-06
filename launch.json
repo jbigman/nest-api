@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch | local with dotenv config",
+            "runtimeArgs": [
+                "--require=dotenv/config"
+            ],
+            "envFile": "${workspaceFolder}/env/.env.test"
+        }
+    ]
+}
