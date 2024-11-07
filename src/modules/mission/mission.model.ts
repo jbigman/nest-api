@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import type * as mongoose from 'mongoose'
 import { mongoosePagination } from 'mongoose-paginate-ts'
-import type {  IMission } from './IMission.js'
+import type { IMission } from './IMission.js'
 import { EMetier } from './enum/EMetier.js'
 
 type MissionDocument = mongoose.HydratedDocument<IMission>

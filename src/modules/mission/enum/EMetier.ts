@@ -1,4 +1,4 @@
 export enum EMetier {
-  INFIRMER = "Infirmier",
-  SOIGNANT = "Aide soignant",
+  INFIRMER = 'Infirmier',
+  SOIGNANT = 'Aide soignant',
 }

@@ -2,10 +2,10 @@ import supertest from 'supertest'
 import { describe, it, assert } from 'vitest'
 import * as isValid from './validators/isValid.ts'
 import * as mocks from './mocks/mocks.ts'
-import type { IRestPostMission } from './../src/modules/mission/rest-interfaces/IRestPostMission';
+import type { IRestPostMission } from '../src/modules/mission/rest-interfaces/IRestPostMission.ts';
 import { EMetier } from '../src/modules/mission/enum/EMetier.ts'
 
-describe('Test lodge routes', () => {
+describe('Test mission routes', () => {
   it('CREATE', async () => {
     if (!mocks.users.admin) {
       throw new Error('TEST - Admin not yet created?')

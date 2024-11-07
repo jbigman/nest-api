@@ -27,7 +27,7 @@ class App {
       const server = await NestFactory.create(AppModule)
       server.enableShutdownHooks()
 
-      server.useGlobalFilters(new GlobalExceptionFilter());
+      server.useGlobalFilters(new GlobalExceptionFilter())
 
       server.use(cors())
       server.use(jsonServer.bodyParser)

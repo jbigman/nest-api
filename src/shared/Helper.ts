@@ -63,4 +63,3 @@ export const transformCollection = async <I, O>(
   const mappedElements = mappedList.flatMap((f) => (f ? [f] : []))
   return getPagination<O, I>(collection, mappedElements)
 }
-

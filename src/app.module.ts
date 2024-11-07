@@ -5,8 +5,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
 import { MongooseModule } from '@nestjs/mongoose'
 import { MongoMemoryServer } from 'mongodb-memory-server'
 import { AuthModule } from './modules/auth/auth.module.js'
-import { UserModule } from './modules/user/user.module.js'
 import { MissionModule } from './modules/mission/mission.module.js'
+import { UserModule } from './modules/user/user.module.js'
 
 @Module({
   imports: [

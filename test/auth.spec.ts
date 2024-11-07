@@ -1,9 +1,13 @@
 import supertest from 'supertest'
 import { describe, it, assert } from 'vitest'
 import * as mocks from './mocks/mocks.js'
-import * as routes from '../src/shared/routes.js'
 
 describe('Test auth routes', () => {
+
+  const routes = {
+    AUTHENTICATE : '/users/auth'
+  }
+
   it(`POST - ${routes.AUTHENTICATE}`, async () => {
     if (!mocks.users.admin) {
       throw new Error('TEST - Admin not yet created?')

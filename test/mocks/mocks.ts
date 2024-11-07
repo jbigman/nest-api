@@ -3,10 +3,6 @@ import type IUser from '../../src/modules/user/IUser.ts'
 import type { UserService } from '../../src/modules/user/user.service.ts'
 import type { AuthService } from '../../src/modules/auth/auth.service.ts'
 import type { UserDocument } from '../../src/modules/user/user.model.ts'
-import type { RentalRequestService } from '../../src/modules/rental-request/rental-request.service.ts'
-import type { IPostRentalRequest } from '../../src/modules/rental-request/IRestRentalRequest.ts'
-import type { LodgeService } from '../../src/modules/lodge/lodge.service.ts'
-import type { IPostNewLodge } from '../../src/modules/lodge/IRestLodge.ts'
 
 export const users: { admin?: UserDocument; randomUser?: UserDocument } = {
   admin: undefined,
@@ -45,62 +41,4 @@ export const randomUser = async (authService: AuthService) => {
   }
   const result = await authService.createUser(payload)
   users.randomUser = result
-}
-
-export const randomRentalRequest = async (
-  rentalRequestService: RentalRequestService
-) => {
-  const payload: IPostRentalRequest = {
-    from: 1715775338783,
-    to: 1715775338783,
-    price: 100,
-    taxe: 10,
-    total: 200,
-    custom: {
-      email: 'test@test.com',
-      message: 'test',
-    },
-    options: {
-      menage: false,
-      nbLitSimple: 1,
-      nbLitDouble: 1,
-      nbLinge: 1,
-      adults: 1,
-      kids: 1,
-      babies: 1,
-    },
-    billing: {
-      firstName: 'test',
-      lastName: 'test',
-      phone: '0102030405',
-      address: {
-        line1: 'test',
-        line2: 'test',
-        city: 'test',
-        state: 'test',
-        postal_code: 'test',
-        country: 'test',
-      },
-    },
-  }
-  await rentalRequestService.createRentalRequestAndPaymentIntent(payload)
-}
-
-export const randomLodge = async (
-  lodgeService: LodgeService,
-  userService: UserService
-) => {
-  const payload: IPostNewLodge = {
-    name: 'lodgename',
-    description: 'test',
-    address: 'string',
-    year: 2024,
-    days: [],
-  }
-  const admin = await userService.getUserByEmail('gamewisherbot@gmail.com')
-  if (!admin) {
-    console.log('init lodge failed : no admin')
-    return
-  }
-  await lodgeService.createLodgeInternal(payload, admin)
 }
