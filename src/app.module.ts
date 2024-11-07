@@ -1,5 +1,3 @@
-import { MailerModule } from '@nestjs-modules/mailer'
-import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter.js'
 import { Module, forwardRef } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { MongooseModule } from '@nestjs/mongoose'
@@ -10,31 +8,6 @@ import { UserModule } from './modules/user/user.module.js'
 
 @Module({
   imports: [
-    MailerModule.forRootAsync({
-      useFactory: () => ({
-        transport: {
-          host: process.env.SMTP_HOST,
-          port: process.env.SMTP_PORT
-            ? Number.parseInt(process.env.SMTP_PORT)
-            : 587,
-          secure: false, // upgrade later with STARTTLS
-          auth: {
-            user: process.env.SMTP_USER,
-            pass: process.env.SMTP_PASS,
-          },
-        },
-        defaults: {
-          from: '"nest-modules" <modules@nestjs.com>',
-        },
-        template: {
-          dir: `${process.cwd()}/templates/`,
-          adapter: new HandlebarsAdapter(), // or new PugAdapter()
-          options: {
-            strict: true,
-          },
-        },
-      }),
-    }),
     ConfigModule.forRoot({
       envFilePath: !process.env.NODE_ENV
         ? '.env'
