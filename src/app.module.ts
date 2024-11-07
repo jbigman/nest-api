@@ -5,9 +5,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
 import { MongooseModule } from '@nestjs/mongoose'
 import { MongoMemoryServer } from 'mongodb-memory-server'
 import { AuthModule } from './modules/auth/auth.module.js'
-import { LodgeModule } from './modules/lodge/lodging.module.js'
-import { RentalRequestModule } from './modules/rental-request/rental-request.module.js'
 import { UserModule } from './modules/user/user.module.js'
+import { MissionModule } from './modules/mission/mission.module.js'
 
 @Module({
   imports: [
@@ -51,7 +50,6 @@ import { UserModule } from './modules/user/user.module.js'
           uri = mongod.getUri()
           return { uri } // All that is needed for locally using mongodb-memory-server
         }
-        console.log(`[Mongoose] ${uri}`)
         return {
           connectionFactory: (connection) => {
             if (connection.readyState === 1) {
@@ -84,8 +82,7 @@ import { UserModule } from './modules/user/user.module.js'
     }),
     AuthModule,
     forwardRef(() => UserModule),
-    forwardRef(() => RentalRequestModule),
-    forwardRef(() => LodgeModule),
+    forwardRef(() => MissionModule),
   ],
   controllers: [],
   providers: [],

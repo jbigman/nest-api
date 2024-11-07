@@ -1,0 +1,4 @@
+export enum EError {
+  BAD_REQUEST_EXCEPTION = "BAD_REQUEST_EXCEPTION",
+  NOT_FOUND = "NOT_FOUND",
+}

@@ -4,6 +4,7 @@ import cors from 'cors'
 import jsonServer from 'json-server'
 import { Logger } from 'tslog'
 import { AppModule } from '../app.module.js'
+import { GlobalExceptionFilter } from '../modules/mission/exception/GlobalExceptionFilter.js'
 
 class App {
   public logger
@@ -25,6 +26,8 @@ class App {
       logger.info('[Nest start]')
       const server = await NestFactory.create(AppModule)
       server.enableShutdownHooks()
+
+      server.useGlobalFilters(new GlobalExceptionFilter());
 
       server.use(cors())
       server.use(jsonServer.bodyParser)
