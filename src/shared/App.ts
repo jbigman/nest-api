@@ -17,7 +17,7 @@ class App {
     })
 
     this.logger.info(
-      `[ENV] ${process.env.ENVIRONMENT}, ${process.env.NODE_ENV}`
+      `[ENV] ${process.env.NODE_ENV}`
     )
   }
 
@@ -27,10 +27,13 @@ class App {
       const server = await NestFactory.create(AppModule)
       server.enableShutdownHooks()
 
+      // Intercept errors to return http exceptions.
       server.useGlobalFilters(new GlobalExceptionFilter())
 
       server.use(cors())
       server.use(jsonServer.bodyParser)
+
+      // Allow automatic validation of body and path params
       server.useGlobalPipes(
         new ValidationPipe({
           transform: true,

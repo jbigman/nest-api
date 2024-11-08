@@ -2,14 +2,15 @@ import { Inject, Injectable } from '@nestjs/common'
 import type { UserDocument } from '../user/user.model.js'
 import type { EMetier } from './enum/EMetier.js'
 import { BusinessError } from './exception/BusinessError.js'
-import type { MissionDocument } from './mission.model.js'
-import { MissionOrm } from './orm/mission.orm.js'
+import type { MissionOrm } from './orm/mission.orm.js'
 import type { IGetMission } from './rest-interfaces/IGetMission.js'
+import type { IMission } from './IMission.js'
+import { ORM_INTERFACE_TOKEN } from './orm/orm-token.js'
 
 @Injectable()
 export class MissionService {
   constructor(
-    @Inject(MissionOrm)
+    @Inject(ORM_INTERFACE_TOKEN)
     private readonly missionOrm: MissionOrm
   ) {}
 
@@ -55,7 +56,7 @@ export class MissionService {
    * @returns IGetMission
    */
   docToRest = async (
-    doc: MissionDocument,
+    doc: IMission,
     requester: null | UserDocument
   ): Promise<IGetMission> => {
     const restMission: IGetMission = {

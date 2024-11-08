@@ -15,9 +15,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     const ctx = host.switchToHttp()
     const response = ctx.getResponse<Response>()
 
-    ///////////////
     /// L'exception est gerée de manière globale
-    ///////////////
     if (exception instanceof BusinessError) {
       const { message } = exception
       response.status(HttpStatus.BAD_REQUEST).json({
@@ -27,8 +25,6 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         timestamp: new Date().toISOString(),
         path: ctx.getRequest().url,
       })
-      ///////////////
-      ///////////////
     } else if (exception instanceof HttpException) {
       // Handle other HTTP exceptions
       const status = exception.getStatus()

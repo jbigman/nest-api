@@ -3,6 +3,7 @@ import type IUser from '../../src/modules/user/IUser.ts'
 import type { UserService } from '../../src/modules/user/user.service.ts'
 import type { AuthService } from '../../src/modules/auth/auth.service.ts'
 import type { UserDocument } from '../../src/modules/user/user.model.ts'
+import { vi } from 'vitest'
 
 export const users: { admin?: UserDocument; randomUser?: UserDocument } = {
   admin: undefined,

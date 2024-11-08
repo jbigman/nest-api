@@ -13,18 +13,7 @@ export class AuthService {
     @InjectModel(User.name)
     private readonly userModel: Pagination<UserDocument>
   ) {
-    this.googleClient = new OAuth2Client({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-    })
-  }
-
-  getUserFromToken = async (
-    authorization?: string
-  ): Promise<null | UserDocument> => {
-    if (!authorization) {
-      return null
-    }
-    return await this.getUser(authorization)
+    this.googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
   }
 
   getUser = async (token: string): Promise<null | UserDocument> => {
@@ -73,10 +62,6 @@ export class AuthService {
     return this.create(newUser)
   }
 
-  getBot = async (): Promise<UserDocument | null> => {
-    return await this.userModel.findOne({ email: 'gamewisherbot@gmail.com' })
-  }
-
   extractPayload = async (token: string) => {
     const ticket = await this.googleClient.verifyIdToken({
       idToken: token,
@@ -84,11 +69,4 @@ export class AuthService {
     })
     return ticket.getPayload()
   }
-}
-
-export const isAdmin = (user: UserDocument) => {
-  if (!user) {
-    return false
-  }
-  return user.isAdmin
 }
