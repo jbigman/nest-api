@@ -11,7 +11,7 @@ export class MissionDbTestService implements IOrmInterface {
     debut: number,
     fin: number
   ): Promise<IMission> => {
-    console.log("JE PASSE DANS LE MOCK")
+    console.log("Je passe dans le service de base de donnée injectée pour le test.")
     return {
       metier,
       debut,
