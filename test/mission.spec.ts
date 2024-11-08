@@ -6,6 +6,25 @@ import { EMetier } from '../src/modules/mission/enum/EMetier.ts'
 import { users } from './mocks/mocks.ts';
 
 describe('Test mission routes', () => {
+
+  // Check that guard return false in this case
+  it('CREATE without admin rights', async () => {
+    if (!users.randomUser) {
+      throw new Error('TEST - user not yet created?')
+    }
+    const body : IRestPostMission = {
+      debut: new Date().getTime(),
+      fin: new Date().getTime() + 1000*60, // +1min
+      metier: EMetier.INFIRMER
+    }
+    const res = await supertest(global.app.getHttpServer())
+    .post( '/mission/create')
+    .send(body)
+    .set({ Authorization: `Email ${users.randomUser.email}` })
+    assert.equal(res.status, 403)
+  })
+
+  // Check that guard return true in this case
   it('CREATE', async () => {
     if (!users.admin) {
       throw new Error('TEST - Admin not yet created?')

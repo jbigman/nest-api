@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common'
 import { Reflector } from '@nestjs/core'
 import { AuthService } from '../auth/auth.service.js'
-import { IsAdmin } from './isAdmin.decorator.js'
+import { IS_ADMIN_KEY, IsAdmin } from './isAdmin.decorator.js'
 
 @Injectable()
 export class IsAdminGuard implements CanActivate {
@@ -18,7 +18,7 @@ export class IsAdminGuard implements CanActivate {
   ) {}
 
   canActivate = async (context: ExecutionContext): Promise<boolean> => {
-    const isAdmin = this.reflector.get(IsAdmin, context.getHandler())
+    const isAdmin = this.reflector.get(IS_ADMIN_KEY, context.getHandler())
     if (isAdmin) {
       const result = context.switchToHttp().getRequest()
       const token = result.headers.authorization

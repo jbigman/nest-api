@@ -7,6 +7,7 @@ import {
   NotImplementedException,
   Post,
   UnauthorizedException,
+  UseGuards,
   forwardRef,
 } from '@nestjs/common'
 
@@ -32,6 +33,7 @@ export class MissionController {
   // Implementé juste pour l'exemple,
   // parceque ca fait doublon avec l'appel necessaire pour generer les liens restfull.
   @IsAdmin()
+  @UseGuards(IsAdminGuard) // Apply guard to this specific route
   async createMission(
     // Validation du payload d'entré par les global validator pipes => Badrequest
     @Body() body: IRestPostMission,
