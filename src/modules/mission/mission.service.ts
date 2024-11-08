@@ -1,17 +1,17 @@
 import { Inject, Injectable } from '@nestjs/common'
+import { ORM_INTERFACE_TOKEN } from '../../tokens/orm-token.js'
 import type { UserDocument } from '../user/user.model.js'
+import type { IMission } from './IMission.js'
 import type { EMetier } from './enum/EMetier.js'
 import { BusinessError } from './exception/BusinessError.js'
-import type { MissionOrm } from './orm/mission.orm.js'
+import type { MissionDbService } from './orm/mission.db.service.js'
 import type { IGetMission } from './rest-interfaces/IGetMission.js'
-import type { IMission } from './IMission.js'
-import { ORM_INTERFACE_TOKEN } from './orm/orm-token.js'
 
 @Injectable()
 export class MissionService {
   constructor(
     @Inject(ORM_INTERFACE_TOKEN)
-    private readonly missionOrm: MissionOrm
+    private readonly missionOrm: MissionDbService
   ) {}
 
   /**

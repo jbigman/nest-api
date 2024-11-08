@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import type { Pagination } from 'mongoose-paginate-ts'
+import type { IMission } from '../IMission.js'
 import type { EMetier } from '../enum/EMetier.js'
 import { Mission } from '../mission.model.js'
 import type { IOrmInterface } from './IOrmInterface.js'
-import type { IMission } from '../IMission.js'
 
 @Injectable()
-export class MissionOrm implements IOrmInterface {
+export class MissionDbService implements IOrmInterface {
   constructor(
     @InjectModel(Mission.name)
     private readonly missionModel: Pagination<Mission>

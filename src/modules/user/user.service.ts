@@ -45,7 +45,7 @@ export class UserService {
     try {
       payload = await this.authService.extractPayload(token)
     } catch (exception) {
-       console.log('authenticateUser (exception)', exception)
+      console.log('authenticateUser (exception)', exception)
       throw new UnauthorizedException()
     }
 

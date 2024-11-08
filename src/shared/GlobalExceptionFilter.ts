@@ -6,7 +6,7 @@ import {
   HttpStatus,
 } from '@nestjs/common'
 import type { Response } from 'express'
-import { BusinessError } from './BusinessError.js'
+import { BusinessError } from '../modules/mission/exception/BusinessError.js'
 
 /// imported through app.useGlobalFilters(new GlobalExceptionFilter()); in  App.ts
 @Catch()

@@ -4,7 +4,7 @@ import cors from 'cors'
 import jsonServer from 'json-server'
 import { Logger } from 'tslog'
 import { AppModule } from '../app.module.js'
-import { GlobalExceptionFilter } from '../modules/mission/exception/GlobalExceptionFilter.js'
+import { GlobalExceptionFilter } from './GlobalExceptionFilter.js'
 
 class App {
   public logger
@@ -16,9 +16,7 @@ class App {
       hideLogPositionForProduction: process.env.NODE_ENV === 'production',
     })
 
-    this.logger.info(
-      `[ENV] ${process.env.NODE_ENV}`
-    )
+    this.logger.info(`[ENV] ${process.env.NODE_ENV}`)
   }
 
   start = async (): Promise<void> => {

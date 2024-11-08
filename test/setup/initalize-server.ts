@@ -3,20 +3,13 @@ import App from '../../src/shared/App'
 import * as mocks from '../mocks/mocks'
 import { Test } from '@nestjs/testing'
 import { AuthService } from '../../src/modules/auth/auth.service.ts'
-import { ValidationPipe, forwardRef } from '@nestjs/common'
-import {
-  closeMongooseConnection,
-  rootMongooseTestModule,
-} from './MongooseTestModule.ts'
-import { AuthModule } from '../../src/modules/auth/auth.module.ts'
-import { ConfigModule } from '@nestjs/config'
-import { UserModule } from '../../src/modules/user/user.module.ts'
+import { ValidationPipe } from '@nestjs/common'
+import { closeMongooseConnection } from './MongooseTestModule.ts'
 import { UserService } from '../../src/modules/user/user.service.ts'
-import { MissionModule } from '../../src/modules/mission/mission.module.ts'
-import { GlobalExceptionFilter } from '../../src/modules/mission/exception/GlobalExceptionFilter.ts'
-import { TestMissionOrm } from '../mocks/mission.orm.ts'
-import { ORM_INTERFACE_TOKEN } from './../../src/modules/mission/orm/orm-token';
+import { MissionDbTestService } from '../mocks/mission.db.test.service.ts'
 import { AppModule } from '../../src/app.module.ts'
+import { GlobalExceptionFilter } from '../../src/shared/GlobalExceptionFilter.ts'
+import { ORM_INTERFACE_TOKEN } from '../../src/tokens/orm-token.ts'
 
 beforeAll(async () => {
   const moduleRef = await Test.createTestingModule({
@@ -25,7 +18,7 @@ beforeAll(async () => {
     ],
   })
   .overrideProvider(ORM_INTERFACE_TOKEN)
-  .useClass(TestMissionOrm)             
+  .useClass(MissionDbTestService)             
   .compile()
   
   // Ovveride OAut before createNestApplication 
